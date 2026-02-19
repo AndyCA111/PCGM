@@ -31,7 +31,7 @@ The codebase consists of three main components:
 # 🚀 Get Started
 
 ```bash
-git clone https://github.com/<your-name>/PCGM.git
+git clone https://github.com/AndyCA111/PCGM.git
 cd PCGM
 pip install -r requirement.txt
 ```
