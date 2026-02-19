@@ -75,7 +75,6 @@ Training:
 
     accelerate launch \
       --num_processes 2 \
-      --main_process_port 29566 \
       --mixed_precision fp16 \
       modelx/unet_diff.py
 
@@ -87,7 +86,6 @@ Evaluation:
 
     accelerate launch \
       --num_processes 2 \
-      --main_process_port 29566 \
       --mixed_precision fp16 \
       models/unet_diff_eval.py
 
@@ -108,7 +106,6 @@ Training:
 
     accelerate launch \
       --num_processes 2 \
-      --main_process_port 29566 \
       --mixed_precision fp16 \
       models/unet_controlnet.py
 
