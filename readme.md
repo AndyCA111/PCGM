@@ -28,13 +28,24 @@ The codebase consists of three main components:
 
 ---
 
+# 🚀 Get Started
+
+```bash
+git clone https://github.com/<your-name>/PCGM.git
+cd PCGM
+pip install -r requirement.txt
+```
+
+
+
+
 ## Probabilistic Graph Module (PGM)
 
 The Probabilistic Graph Module models anatomical and causal constraints used to guide counterfactual generation.
 
 Documentation can be found at:
 
-    /scratch/m000065/binxu/gcp/binxu/wepeng/codes/causal_MRI/readme_pgm.md
+    PGM/causal_MRI/readme_pgm.md
 
 ---
 
@@ -44,7 +55,7 @@ The Counterfactual Mask Generator converts causal effects inferred by the PGM in
 
 Implementation notebook:
 
-    /scratch/m000065/binxu/gcp/binxu/wepeng/binxu/binx/modify_mask_wei.ipynb
+    modify_mask_wei.ipynb
 
 ---
 
@@ -54,7 +65,6 @@ Implementation notebook:
 
 Training:
 
-    cd /scratch/m000065/binxu/gcp/binxu/wepeng/binxu/binx/brain_gen/Open-Sora-Plan/
     bash train_vae.sh
 
 ---
@@ -63,12 +73,11 @@ Training:
 
 Training:
 
-    cd /scratch/m000065/binxu/gcp/binxu/wepeng/binxu/binx/brain_gen/Open-Sora-Plan/
     accelerate launch \
       --num_processes 2 \
       --main_process_port 29566 \
       --mixed_precision fp16 \
-      examples/unet_diff.py
+      modelx/unet_diff.py
 
 Alternative training script:
 
@@ -80,7 +89,7 @@ Evaluation:
       --num_processes 2 \
       --main_process_port 29566 \
       --mixed_precision fp16 \
-      examples/unet_diff_eval.py
+      models/unet_diff_eval.py
 
 ---
 
@@ -88,8 +97,8 @@ Evaluation:
 
 Scripts for decoding latent representations into full-resolution 3D MRIs:
 
-    /scratch/m000065/binxu/gcp/binxu/wepeng/binxu/binx/brain_gen/Open-Sora-Plan/examples/unet_diff_diffusion_decoder.py
-    /scratch/m000065/binxu/gcp/binxu/wepeng/binxu/binx/brain_gen/Open-Sora-Plan/examples/unet_diff_diffusion_decoder_eval.py
+    unet_diff_diffusion_decoder.py
+    unet_diff_diffusion_decoder_eval.py
 
 ---
 
@@ -97,12 +106,11 @@ Scripts for decoding latent representations into full-resolution 3D MRIs:
 
 Training:
 
-    cd /scratch/m000065/binxu/gcp/binxu/wepeng/binxu/binx/brain_gen/Open-Sora-Plan/
     accelerate launch \
       --num_processes 2 \
       --main_process_port 29566 \
       --mixed_precision fp16 \
-      examples/unet_controlnet.py
+      models/unet_controlnet.py
 
 ---
 
@@ -113,19 +121,19 @@ Once the PGM is trained, PCGM supports the following workflows:
 Pure image generation:
 
     # Diffusion (eval) → Diffusion Decoder (eval)
-    examples/unet_diff_eval.py
-    examples/unet_diff_diffusion_decoder_eval.py
+    models/unet_diff_eval.py
+    models/unet_diff_diffusion_decoder_eval.py
 
 Age counterfactual generation:
 
     # Diffusion (age counterfactual eval) → Diffusion Decoder (eval)
-    examples/unet_diff_eval_editing_age.py
-    examples/unet_diff_diffusion_decoder_eval.py
+    models/unet_diff_eval_editing_age.py
+    models/unet_diff_diffusion_decoder_eval.py
 
 codes:
 
-    examples/unet_diff_eval_editing_age.py
-    examples/unet_diff_diffusion_decoder_eval.py
+    models/unet_diff_eval_editing_age.py
+    models/unet_diff_diffusion_decoder_eval.py
 
 AUD counterfactual generation:
 
