@@ -14,7 +14,12 @@ Extensive experiments on multiple datasets show that PCGM produces higher-qualit
 
 ## Dataset Overview
 
-To be filled in. Please describe dataset sources, cohort definitions, preprocessing steps, and data splits.
+in dataloader define:
+
+video_data_paths_dict = {
+    ...
+    "MRI": "your data path"
+}
 
 ---
 
@@ -24,7 +29,7 @@ The codebase consists of three main components:
 
 - PGM: Probabilistic Graph Module (data modeling, causal structure, preprocessing)
 - MGD: Mask-Guided Diffusion (core generative backbone)
-- CMD: Counterfactual Modeling and Diagnostics (task-specific logic and evaluation)
+- CMG: Counterfactual Mask Generator
 
 ---
 
