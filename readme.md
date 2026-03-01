@@ -14,21 +14,22 @@ Extensive experiments on multiple datasets show that PCGM produces higher-qualit
 
 ## Dataset Overview
 
-in dataloader define:
-
+In `models/dataloader.py`, define your data path:
+```python
 video_data_paths_dict = {
     ...
     "MRI": "your data path"
 }
+```
 
----
+Set your own data location in `dataloader.py` wherever it is used.
 
 ## Modules Overview
 
 The codebase consists of three main components:
 
-- PGM: Probabilistic Graph Module (data modeling, causal structure, preprocessing)
-- MGD: Mask-Guided Diffusion (core generative backbone)
+- PGM: Probabilistic Graph Module 
+- MGD: Mask-Guided Diffusion
 - CMG: Counterfactual Mask Generator
 
 ---
@@ -41,6 +42,15 @@ cd PCGM
 pip install -r requirement.txt
 ```
 
+## Segmentation Model for Preprocessing
+
+In this project, we use [SynthSeg](https://github.com/BBillot/SynthSeg) for brain segmentation.
+
+Please use this model to segment all brain data before every step, and save:
+1. The output mask (including parcellation)
+2. The probability maps for both the general segmentation (`post`) and parcellation (`parc`) masks
+
+These can be easily found in the SynthSeg repo.
 
 
 
@@ -60,7 +70,7 @@ The Counterfactual Mask Generator converts causal effects inferred by the PGM in
 
 Implementation notebook:
 
-    modify_mask_wei.ipynb
+    modify_mask.ipynb
 
 ---
 
@@ -116,24 +126,19 @@ Training:
 
 ---
 
-## End-to-End Pipeline
+## Inference
 
 Once the PGM is trained, PCGM supports the following workflows:
 
-Pure image generation:
+Unconditional MRI generation:
 
-    # Diffusion (eval) → Diffusion Decoder (eval)
+    # Diffusion → Diffusion Decoder
     models/unet_diff_eval.py
     models/unet_diff_diffusion_decoder_eval.py
 
 Age counterfactual generation:
 
-    # Diffusion (age counterfactual eval) → Diffusion Decoder (eval)
-    models/unet_diff_eval_editing_age.py
-    models/unet_diff_diffusion_decoder_eval.py
-
-codes:
-
+    # Diffusion → Diffusion Decoder
     models/unet_diff_eval_editing_age.py
     models/unet_diff_diffusion_decoder_eval.py
 
@@ -142,6 +147,12 @@ AUD counterfactual generation:
     PGM → CMG → Diffusion (AUD counterfactual eval) → Diffusion Decoder (eval)
 
 codes:
+    
+    PGM/causal_MRI/CE_sample_5fold.py
+    using relevant code in modify_mask.ipynb to modify the mask you want
+    then we need a file to save the counterfactual volume , and then use models/unet_diff_eval_editing_age_controlnet.py
+    models/unet_diff_diffusion_decoder_eval.py
+
 
 
 
