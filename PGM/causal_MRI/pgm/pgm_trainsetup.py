@@ -13,13 +13,13 @@ from .pgm_dataloader import BrainDataset,BrainDataset_Ctrl, BrainDataset_csv
 from .pgm_hps import Hparams
 from .pgm_utils import linear_warmup, seed_worker
 
-def setup_dataloaders(batch, f_id=0, Test=False, Dataset=0) -> Dict[str, DataLoader]:
+def setup_dataloaders(batch, csv_file='', f_id=0, Test=False, Dataset=0) -> Dict[str, DataLoader]:
     if Dataset ==0:
-        datasets = BrainDataset_csv(fold_id=f_id, test = Test)
+        datasets = BrainDataset_csv(csv_file = csv_file, fold_id=f_id, test = Test)
     elif Dataset ==1:
-        datasets = BrainDataset(fold_id=f_id)
+        datasets = BrainDataset(csv_file = csv_file, fold_id=f_id)
     elif Dataset ==2:
-        datasets = BrainDataset_Ctrl()
+        datasets = BrainDataset_Ctrl(csv_file = csv_file,)
 
     kwargs = {
         "batch_size": batch,

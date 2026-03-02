@@ -58,7 +58,8 @@ class BrainDataset_csv(Dataset):
         ):
 ###   
     # Metadata: None, sex, Age , diagnosis , svol, Frontal_raw, Insula_raw, Parietal_raw 
-        data = pd.read_csv("/home/wepeng/codes/causal_MRI/merged_output_pgm_exc_cere_mia.csv") # pd.read_csv(csv_file)
+        # data = pd.read_csv("/home/wepeng/codes/causal_MRI/merged_output_pgm_exc_cere_mia.csv") # pd.read_csv(csv_file)
+        data = pd.read_csv(csv_file)
         print("load merged_output_pgm from Braindataset_csv...")
         # Step 2: Replace values in diagnose 'dx_raw' based on conditions
         data['dx_raw'] =  data['dx_raw'].replace({"etoh": 1, "ctrl": 0})
@@ -152,9 +153,10 @@ class BrainDataset_csv_fold(Dataset):
         fold_id = 0,
         test= False
         ):
-###   
-    # Metadata: None, sex, Age , diagnosis , svol, Frontal_raw, Insula_raw, Parietal_raw 
-        data = pd.read_csv("/home/wepeng/codes/causal_MRI/merged_output_pgm_exc_cere_mia.csv") # pd.read_csv(csv_file)
+        ###   
+        # Metadata: None, sex, Age , diagnosis , svol, Frontal_raw, Insula_raw, Parietal_raw 
+        # data = pd.read_csv("/home/wepeng/codes/causal_MRI/merged_output_pgm_exc_cere_mia.csv") # pd.read_csv(csv_file)
+        data = pd.read_csv(csv_file)
         print("load merged_output_pgm from Braindataset_csv...")
         # Step 2: Replace values in diagnose 'dx_raw' based on conditions
         data['dx_raw'] =  data['dx_raw'].replace({"etoh": 1, "ctrl": 0})
@@ -267,8 +269,8 @@ class BrainDataset(Dataset):
         fold_id=0):
 ###   
     # Metadata: None, sex, Age , diagnosis , svol, Frontal_raw, Insula_raw, Parietal_raw 
-        data = torch.load("/home/wpeng/results/Meta_DPM/latents/Metadata") # pd.read_csv(csv_file)
-
+        # data = torch.load("/home/wpeng/results/Meta_DPM/latents/Metadata") # pd.read_csv(csv_file)
+        data = pd.read_csv(csv_file)
         ## 5-fold cross validation, train 5 model and put all test fold together to generate p-value
         random_seed = 42
         np.random.seed(random_seed)  # Set numpy random seed

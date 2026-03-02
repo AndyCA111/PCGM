@@ -1,4 +1,5 @@
-## Run the pgm_train.py here to train the model, the model is trianed on the csv file
+## Run the pgm_train.py here to train the model, the model is trained on the csv file
+python pgm_train.py --csv_file csv_path
 ### use the same seed to do the cross-validation split
 ## After training, do counterfactual using the function called 
 codes/causal_MRI/CE_simple_test.py
