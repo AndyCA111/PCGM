@@ -151,7 +151,7 @@ if __name__ == '__main__':
     parser.add_argument('--data_dir',
                         help='Data directory to load form.', type=str, default='')
     parser.add_argument('--csv_file',
-                        help='CSV directory to load form.', type=str, default='')  
+                        help='CSV directory to load form.', type=str, default='/scratch/m000065/binxu/gcp/binxu/wepeng/binxu/binx/filtered_H_with_files.csv')  
     parser.add_argument('--use_dataset',
                         help='Which dataset to use.', type=str, default='')                  
     parser.add_argument('--load_path',

@@ -56,12 +56,15 @@ These can be easily found in the SynthSeg repo.
 
 ## Probabilistic Graph Module (PGM)
 
-The Probabilistic Graph Module models anatomical and causal constraints used to guide counterfactual generation.
+The Probabilistic Graph Module models anatomical and causal constraints used to guide counterfactual generation. The readme file is PGM/causal_MRI/readme_pgm.md
 
-Documentation can be found at:
+Input CSV files should contain the following columns: age_raw, dx_raw, Frontal_Lobe_Sum, Insula_Sum, Parietal_Lobe_Sum, Cingulate_Sum, Occipital_Sum, Temporal_Lobe_Sum, and cerebellum_wm.
 
-    PGM/causal_MRI/readme_pgm.md
+codes:
 
+    cd PGM/causal_MRI
+    python pgm_train.py --csv_file your_csv_path
+    
 ---
 
 ## Counterfactual Mask Generator (CMG)
